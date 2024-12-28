@@ -1,5 +1,16 @@
-name: container-palomar-ghcr
-on: [push]
+name: Manual Trigger Pipeline Palomar
+
+# Trigger only on manual request on the main branch
+on:
+  workflow_dispatch:
+    inputs:
+      environment:
+        description: "Environment to deploy to"
+        required: true
+        default: "production"
+        type: choice
+        options:
+          - production
 env:
   REGISTRY: ghcr.io
   USERNAME: ${{ github.actor }}
